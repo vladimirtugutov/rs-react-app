@@ -1,14 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import useSearchValue from './hooks/useSearchValue';
 
 interface TopControlsProps {
-  onSearch: (searchTerm: string) => void;
+  searchValue: string;
+  setSearchValue: (value: string) => void;
+  onSearch: () => void;
 }
 
-const TopControls: React.FC<TopControlsProps> = ({ onSearch }) => {
-  const [searchValue, setSearchValue] = useSearchValue();
-
+const TopControls: React.FC<TopControlsProps> = ({
+  searchValue,
+  setSearchValue,
+  onSearch,
+}) => {
   return (
     <div className="top-controls">
       <input
@@ -16,9 +18,7 @@ const TopControls: React.FC<TopControlsProps> = ({ onSearch }) => {
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
       />
-      <Link to="/results">
-        <button onClick={() => onSearch(searchValue)}>Search Button</button>
-      </Link>
+      <button onClick={onSearch}>Search</button>
     </div>
   );
 };

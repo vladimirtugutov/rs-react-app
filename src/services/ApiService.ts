@@ -1,17 +1,17 @@
-const BASE_URL = 'https://swapi.dev/api';
-
-export const getResults = async (searchTerm = '') => {
+export const getResults = async (searchTerm = '', page = 1) => {
   try {
-    const searchQuery = searchTerm.trim() ? `&search=${searchTerm.trim()}` : '';
-    const response = await fetch(`${BASE_URL}/people/?page=1${searchQuery}`);
+    const searchQuery = searchTerm ? `&search=${searchTerm}` : '';
+    const res = await fetch(
+      `https://swapi.dev/api/people/?page=${page}${searchQuery}`
+    );
+    const data = await res.json();
 
-    if (!response.ok) {
-      throw new Error(`API Error: ${response.status} ${response.statusText}`);
-    }
-
-    const data = await response.json();
-    return data.results;
+    return {
+      results: data.results || [],
+      totalPages: Math.ceil((data.count || 0) / 10),
+    };
   } catch (error) {
-    throw new Error((error as Error).message);
+    console.error('API Error:', error);
+    throw error;
   }
 };
