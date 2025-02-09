@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
+import useSearchValue from './hooks/useSearchValue';
 
 interface TopControlsProps {
   onSearch: (searchTerm: string) => void;
 }
 
 const TopControls: React.FC<TopControlsProps> = ({ onSearch }) => {
-  const [searchValue, setSearchValue] = useState(
-    localStorage.getItem('prevSearchValue') || ''
-  );
+  const [searchValue, setSearchValue] = useSearchValue();
 
   const handleSearchButtonClick = () => {
-    localStorage.setItem('prevSearchValue', searchValue);
     onSearch(searchValue);
   };
 
