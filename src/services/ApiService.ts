@@ -15,3 +15,16 @@ export const getResults = async (searchTerm = '', page = 1) => {
     throw error;
   }
 };
+
+export const getCharacterDetails = async (id: string) => {
+  try {
+    const res = await fetch(`https://swapi.dev/api/people/${id}/`);
+    if (!res.ok) {
+      throw new Error(`Character not found (ID: ${id})`);
+    }
+    return await res.json();
+  } catch (error) {
+    console.error('Error fetching character details:', error);
+    throw error;
+  }
+};

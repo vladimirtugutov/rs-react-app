@@ -132,3 +132,39 @@ button:hover {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+.content {
+  display: flex;
+}
+
+.left-section {
+  width: 60%;
+  cursor: pointer;
+}
+
+.right-section {
+  width: 40%;
+  background: #f8f8f8;
+  padding: 20px;
+  border-left: 1px solid #ccc;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.details-container {
+  position: relative;
+  padding: 20px;
+}
+
+.close-button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+}

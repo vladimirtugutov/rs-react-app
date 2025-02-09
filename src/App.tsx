@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import TopControls from './TopControls';
 import Results from './Results';
+import Details from './Details';
 import Spinner from './Spinner';
+import Pagination from './Pagination';
 import { getResults } from './services/ApiService';
 import useSearchValue from './hooks/useSearchValue';
 import './App.css';
@@ -12,11 +14,14 @@ const App: React.FC = () => {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [totalPages, setTotalPages] = useState(1);
-  const { page } = useParams<{ page?: string }>();
-  const navigate = useNavigate();
 
-  const currentPage = page ? parseInt(page, 10) : 1;
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { page } = useParams<{ page?: string }>();
+
+  const currentPage = Number(page) || 1;
+  const searchParams = new URLSearchParams(location.search);
+  const selectedDetails = searchParams.get('details');
 
   useEffect(() => {
     fetchResults(searchValue, currentPage);
@@ -29,7 +34,6 @@ const App: React.FC = () => {
     try {
       const data = await getResults(searchTerm, page);
       setResults(data.results);
-      setTotalPages(data.totalPages);
     } catch (error) {
       setError((error as Error).message);
     } finally {
@@ -38,13 +42,31 @@ const App: React.FC = () => {
   };
 
   const handleSearchButtonClick = () => {
-    navigate(`/search/1`);
+    navigate(`/search/${currentPage}`);
+  };
+
+  const handleItemClick = (id: string) => {
+    const newParams = new URLSearchParams(window.location.search);
+    newParams.set('details', id);
+
+    navigate(`${window.location.pathname}?${newParams.toString()}`, {
+      replace: true,
+    });
+  };
+
+  const handleCloseDetails = () => {
+    const newParams = new URLSearchParams(window.location.search);
+    newParams.delete('details');
+
+    const newUrl = newParams.toString()
+      ? `${window.location.pathname}?${newParams.toString()}`
+      : window.location.pathname;
+
+    navigate(newUrl, { replace: true });
   };
 
   const handlePageChange = (newPage: number) => {
-    if (newPage > 0 && newPage <= totalPages) {
-      navigate(`/search/${newPage}`);
-    }
+    navigate(`/search/${newPage}`);
   };
 
   return (
@@ -55,29 +77,34 @@ const App: React.FC = () => {
         onSearch={handleSearchButtonClick}
       />
 
-      <div className="results-wrapper">
-        {loading ? <Spinner /> : <Results results={results} error={error} />}
+      <div className="content">
+        <div className="left-section" onClick={handleCloseDetails}>
+          {loading ? (
+            <Spinner />
+          ) : (
+            <Results
+              results={results}
+              onItemClick={handleItemClick}
+              error={error}
+            />
+          )}
+        </div>
+
+        {selectedDetails && (
+          <div className="right-section">
+            <Details itemId={selectedDetails} onClose={handleCloseDetails} />
+          </div>
+        )}
       </div>
 
-      {results.length > 0 && (
-        <div className="pagination-controls">
-          <button
-            disabled={currentPage === 1}
-            onClick={() => handlePageChange(currentPage - 1)}
-          >
-            Previous
-          </button>
-          <span>
-            Page {currentPage} of {totalPages}
-          </span>
-          <button
-            disabled={currentPage >= totalPages}
-            onClick={() => handlePageChange(currentPage + 1)}
-          >
-            Next
-          </button>
-        </div>
-      )}
+      <div className="pagination-container">
+        {results.length > 0 && (
+          <Pagination
+            currentPage={currentPage}
+            onPageChange={handlePageChange}
+          />
+        )}
+      </div>
     </div>
   );
 };

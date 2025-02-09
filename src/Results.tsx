@@ -4,14 +4,24 @@ interface Character {
   name: string;
   gender: string;
   birth_year: string;
+  url: string;
 }
 
 interface ResultsProps {
   results: Character[];
+  onItemClick: (id: string) => void;
   error: string | null;
 }
 
-const Results: React.FC<ResultsProps> = ({ results, error }) => {
+const Results: React.FC<ResultsProps> = ({ results, onItemClick, error }) => {
+  const handleRowClick = (
+    event: React.MouseEvent<HTMLTableRowElement>,
+    id: string
+  ) => {
+    event.stopPropagation();
+    onItemClick(id);
+  };
+
   return (
     <table className="results-table">
       <thead>
@@ -34,14 +44,21 @@ const Results: React.FC<ResultsProps> = ({ results, error }) => {
             </td>
           </tr>
         ) : (
-          results.map((item) => (
-            <tr key={item.name}>
-              <td>{item.name}</td>
-              <td>
-                {item.gender}, {item.birth_year}
-              </td>
-            </tr>
-          ))
+          results.map((item) => {
+            const id = item.url.split('/').slice(-2, -1)[0];
+            return (
+              <tr
+                key={id}
+                onClick={(event) => handleRowClick(event, id)}
+                className="clickable"
+              >
+                <td>{item.name}</td>
+                <td>
+                  {item.gender}, {item.birth_year}
+                </td>
+              </tr>
+            );
+          })
         )}
       </tbody>
     </table>
