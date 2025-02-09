@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import useSearchValue from './hooks/useSearchValue';
 
 interface TopControlsProps {
@@ -8,10 +9,6 @@ interface TopControlsProps {
 const TopControls: React.FC<TopControlsProps> = ({ onSearch }) => {
   const [searchValue, setSearchValue] = useSearchValue();
 
-  const handleSearchButtonClick = () => {
-    onSearch(searchValue);
-  };
-
   return (
     <div className="top-controls">
       <input
@@ -19,7 +16,9 @@ const TopControls: React.FC<TopControlsProps> = ({ onSearch }) => {
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
       />
-      <button onClick={handleSearchButtonClick}>Search Button</button>
+      <Link to="/results">
+        <button onClick={() => onSearch(searchValue)}>Search Button</button>
+      </Link>
     </div>
   );
 };

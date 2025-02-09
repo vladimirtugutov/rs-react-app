@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import TopControls from './TopControls';
 import Results from './Results';
 import Spinner from './Spinner';
-import { getResults } from './services/ApiService.ts';
+import NotFound from './NotFound';
+import { getResults } from './services/ApiService';
 import './App.css';
+
+const Home: React.FC = () => {
+  return <h2>Welcome to the Star Wars Database</h2>;
+};
 
 const App: React.FC = () => {
   const [results, setResults] = useState([]);
@@ -41,9 +47,22 @@ const App: React.FC = () => {
     <div className="app-container">
       <TopControls onSearch={fetchResults} />
 
-      <div className="results-wrapper">
-        {loading ? <Spinner /> : <Results results={results} error={error} />}
-      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/results"
+          element={
+            <div className="results-wrapper">
+              {loading ? (
+                <Spinner />
+              ) : (
+                <Results results={results} error={error} />
+              )}
+            </div>
+          }
+        />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
 
       <div className="error-button-container">
         <button onClick={handleErrorButtonClick}>Error Button</button>
