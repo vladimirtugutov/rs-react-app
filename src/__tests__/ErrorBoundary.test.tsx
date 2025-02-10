@@ -7,6 +7,15 @@ const ProblematicComponent = () => {
 };
 
 describe('ErrorBoundary component', () => {
+  // Подавляем console.error, чтобы тест не прерывался на ошибке
+  beforeEach(() => {
+    jest.spyOn(console, 'error').mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   it('renders children when there is no error', () => {
     render(
       <ErrorBoundary>
@@ -24,7 +33,7 @@ describe('ErrorBoundary component', () => {
       </ErrorBoundary>
     );
 
-    expect(screen.getByText(/Test error!/i)).toBeInTheDocument();
+    expect(screen.getByText(/Error: Test error!/i)).toBeInTheDocument();
     expect(
       screen.getByRole('button', { name: /refresh page/i })
     ).toBeInTheDocument();
@@ -39,7 +48,10 @@ describe('ErrorBoundary component', () => {
       </ErrorBoundary>
     );
 
-    expect(logErrorSpy).toHaveBeenCalledWith('Test error!', expect.any(String));
+    expect(logErrorSpy).toHaveBeenCalledWith(
+      'Error: Test error!',
+      expect.any(String)
+    );
 
     logErrorSpy.mockRestore();
   });
