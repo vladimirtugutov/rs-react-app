@@ -1,4 +1,5 @@
 import React from 'react';
+import Card from './Card';
 
 interface Character {
   name: string;
@@ -14,13 +15,33 @@ interface ResultsProps {
 }
 
 const Results: React.FC<ResultsProps> = ({ results, onItemClick, error }) => {
-  const handleRowClick = (
-    event: React.MouseEvent<HTMLTableRowElement>,
-    id: string
-  ) => {
-    event.stopPropagation();
-    onItemClick(id);
-  };
+  if (error) {
+    return (
+      <table className="results-table">
+        <tbody>
+          <tr>
+            <td colSpan={2} className="error-message">
+              {error}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    );
+  }
+
+  if (results.length === 0) {
+    return (
+      <table className="results-table">
+        <tbody>
+          <tr>
+            <td colSpan={2} className="no-results">
+              No results found
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    );
+  }
 
   return (
     <table className="results-table">
@@ -31,35 +52,18 @@ const Results: React.FC<ResultsProps> = ({ results, onItemClick, error }) => {
         </tr>
       </thead>
       <tbody>
-        {error ? (
-          <tr>
-            <td colSpan={2} className="error-message">
-              {error}
-            </td>
-          </tr>
-        ) : results.length === 0 ? (
-          <tr>
-            <td colSpan={2} className="no-results">
-              No results found
-            </td>
-          </tr>
-        ) : (
-          results.map((item) => {
-            const id = item.url.split('/').slice(-2, -1)[0];
-            return (
-              <tr
-                key={id}
-                onClick={(event) => handleRowClick(event, id)}
-                className="clickable"
-              >
-                <td>{item.name}</td>
-                <td>
-                  {item.gender}, {item.birth_year}
-                </td>
-              </tr>
-            );
-          })
-        )}
+        {results.map((item) => {
+          const id = item.url.split('/').slice(-2, -1)[0];
+          return (
+            <Card
+              key={id}
+              id={id}
+              name={item.name}
+              description={`${item.gender}, ${item.birth_year}`}
+              onClick={onItemClick}
+            />
+          );
+        })}
       </tbody>
     </table>
   );

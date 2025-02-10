@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1739158987289" clover="3.2.0">
-  <project timestamp="1739158987289" name="All files">
-    <metrics statements="67" coveredstatements="48" conditionals="13" coveredconditionals="8" methods="20" coveredmethods="15" elements="100" coveredelements="71" complexity="0" loc="67" ncloc="67" packages="1" files="8" classes="8"/>
+<coverage generated="1739205270961" clover="3.2.0">
+  <project timestamp="1739205270961" name="All files">
+    <metrics statements="73" coveredstatements="57" conditionals="11" coveredconditionals="7" methods="20" coveredmethods="17" elements="104" coveredelements="81" complexity="0" loc="73" ncloc="73" packages="1" files="9" classes="9"/>
+    <file name="Card.tsx" path="/home/marmot/study/RS/rs-react-app/src/Card.tsx">
+      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <line num="10" count="3" type="stmt"/>
+      <line num="11" count="7" type="stmt"/>
+      <line num="15" count="2" type="stmt"/>
+      <line num="16" count="2" type="stmt"/>
+      <line num="27" count="3" type="stmt"/>
+    </file>
     <file name="Details.tsx" path="/home/marmot/study/RS/rs-react-app/src/Details.tsx">
       <metrics statements="19" coveredstatements="18" conditionals="6" coveredconditionals="5" methods="4" coveredmethods="4"/>
       <line num="1" count="2" type="stmt"/>
@@ -54,16 +62,17 @@
       <line num="33" count="2" type="stmt"/>
     </file>
     <file name="Results.tsx" path="/home/marmot/study/RS/rs-react-app/src/Results.tsx">
-      <metrics statements="9" coveredstatements="6" conditionals="4" coveredconditionals="3" methods="4" coveredmethods="2"/>
-      <line num="16" count="1" type="stmt"/>
-      <line num="17" count="4" type="stmt"/>
-      <line num="21" count="0" type="stmt"/>
-      <line num="22" count="0" type="stmt"/>
-      <line num="25" count="4" type="stmt"/>
-      <line num="48" count="2" type="stmt"/>
-      <line num="49" count="2" type="stmt"/>
-      <line num="52" count="0" type="stmt"/>
-      <line num="68" count="1" type="stmt"/>
+      <metrics statements="10" coveredstatements="10" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+      <line num="2" count="2" type="stmt"/>
+      <line num="17" count="2" type="stmt"/>
+      <line num="18" count="8" type="cond" truecount="1" falsecount="0"/>
+      <line num="19" count="1" type="stmt"/>
+      <line num="32" count="7" type="cond" truecount="1" falsecount="0"/>
+      <line num="33" count="3" type="stmt"/>
+      <line num="46" count="4" type="stmt"/>
+      <line num="56" count="5" type="stmt"/>
+      <line num="57" count="5" type="stmt"/>
+      <line num="72" count="2" type="stmt"/>
     </file>
     <file name="Spinner.tsx" path="/home/marmot/study/RS/rs-react-app/src/Spinner.tsx">
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
