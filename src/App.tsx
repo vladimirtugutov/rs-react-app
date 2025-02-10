@@ -26,8 +26,8 @@ const App: React.FC = () => {
   const selectedDetails = searchParams.get('details');
 
   useEffect(() => {
-    fetchResults(query, 1);
-  }, [query]);
+    fetchResults(query, currentPage);
+  }, [query, currentPage]);
 
   const fetchResults = async (searchTerm: string, page: number) => {
     setLoading(true);
