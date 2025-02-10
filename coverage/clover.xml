@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1739205270961" clover="3.2.0">
-  <project timestamp="1739205270961" name="All files">
-    <metrics statements="73" coveredstatements="57" conditionals="11" coveredconditionals="7" methods="20" coveredmethods="17" elements="104" coveredelements="81" complexity="0" loc="73" ncloc="73" packages="1" files="9" classes="9"/>
+<coverage generated="1739206231784" clover="3.2.0">
+  <project timestamp="1739206231784" name="All files">
+    <metrics statements="73" coveredstatements="61" conditionals="11" coveredconditionals="8" methods="20" coveredmethods="20" elements="104" coveredelements="89" complexity="0" loc="73" ncloc="73" packages="1" files="9" classes="9"/>
     <file name="Card.tsx" path="/home/marmot/study/RS/rs-react-app/src/Card.tsx">
       <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
       <line num="10" count="3" type="stmt"/>
@@ -33,18 +33,18 @@
       <line num="76" count="2" type="stmt"/>
     </file>
     <file name="ErrorBoundary.tsx" path="/home/marmot/study/RS/rs-react-app/src/ErrorBoundary.tsx">
-      <metrics statements="11" coveredstatements="7" conditionals="1" coveredconditionals="0" methods="5" coveredmethods="2"/>
-      <line num="1" count="1" type="stmt"/>
-      <line num="15" count="3" type="stmt"/>
-      <line num="20" count="0" type="stmt"/>
-      <line num="24" count="0" type="stmt"/>
-      <line num="27" count="3" type="stmt"/>
-      <line num="29" count="3" type="stmt"/>
-      <line num="30" count="0" type="stmt"/>
-      <line num="34" count="3" type="cond" truecount="0" falsecount="1"/>
-      <line num="35" count="0" type="stmt"/>
-      <line num="42" count="3" type="stmt"/>
-      <line num="46" count="1" type="stmt"/>
+      <metrics statements="11" coveredstatements="11" conditionals="1" coveredconditionals="1" methods="5" coveredmethods="5"/>
+      <line num="1" count="2" type="stmt"/>
+      <line num="15" count="10" type="stmt"/>
+      <line num="20" count="6" type="stmt"/>
+      <line num="24" count="3" type="stmt"/>
+      <line num="27" count="10" type="stmt"/>
+      <line num="29" count="10" type="stmt"/>
+      <line num="30" count="1" type="stmt"/>
+      <line num="34" count="16" type="cond" truecount="1" falsecount="0"/>
+      <line num="35" count="6" type="stmt"/>
+      <line num="42" count="10" type="stmt"/>
+      <line num="46" count="2" type="stmt"/>
     </file>
     <file name="NotFound.tsx" path="/home/marmot/study/RS/rs-react-app/src/NotFound.tsx">
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>

@@ -3,7 +3,7 @@ import React from 'react';
 interface PaginationProps {
   currentPage: number;
   onPageChange: (page: number) => void;
-  hasMorePages: boolean; // Новый пропс
+  hasMorePages: boolean;
 }
 
 const Pagination: React.FC<PaginationProps> = ({
