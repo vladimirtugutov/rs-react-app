@@ -49,19 +49,14 @@ describe('Pagination component', () => {
       </MemoryRouter>
     );
 
-    // Проверяем, что начальный URL содержит ?page=1
     expect(screen.getByTestId('current-url')).toHaveTextContent('?page=1');
 
-    // Кликаем "Next"
     fireEvent.click(screen.getByText('Next'));
 
-    // Проверяем обновленный URL после клика на "Next"
     expect(screen.getByTestId('current-url')).toHaveTextContent('?page=2');
 
-    // Кликаем "Prev"
     fireEvent.click(screen.getByText('Prev'));
 
-    // Проверяем, что вернулись на страницу 1
     expect(screen.getByTestId('current-url')).toHaveTextContent('?page=1');
   });
 

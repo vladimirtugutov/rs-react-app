@@ -49,10 +49,8 @@ describe('Details component', () => {
 
     screen.debug();
 
-    // Проверяем, что спиннер загрузки присутствует в DOM
     expect(screen.getByTestId('loading-spinner')).toBeInTheDocument();
 
-    // Ожидаем исчезновение спиннера после загрузки данных
     await waitFor(() => {
       expect(screen.queryByTestId('loading-spinner')).not.toBeInTheDocument();
     });

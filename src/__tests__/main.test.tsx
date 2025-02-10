@@ -50,10 +50,8 @@ describe('Main routing', () => {
       );
     });
 
-    // 👀 Выведем текущий DOM для дебага
     screen.debug();
 
-    // ✅ Ожидание загрузки компонента 404
     await waitFor(() => {
       expect(
         screen.getByRole('heading', { name: /404 - page not found/i })
