@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1739206375203" clover="3.2.0">
-  <project timestamp="1739206375203" name="All files">
+<coverage generated="1739206599692" clover="3.2.0">
+  <project timestamp="1739206599692" name="All files">
     <metrics statements="73" coveredstatements="61" conditionals="11" coveredconditionals="8" methods="20" coveredmethods="20" elements="104" coveredelements="89" complexity="0" loc="73" ncloc="73" packages="1" files="9" classes="9"/>
     <file name="Card.tsx" path="/home/marmot/study/RS/rs-react-app/src/Card.tsx">
       <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>

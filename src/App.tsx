@@ -26,8 +26,8 @@ const App: React.FC = () => {
   const selectedDetails = searchParams.get('details');
 
   useEffect(() => {
-    fetchResults(query, currentPage);
-  }, [query, currentPage]);
+    fetchResults(query, 1);
+  }, [query]);
 
   const fetchResults = async (searchTerm: string, page: number) => {
     setLoading(true);
@@ -46,7 +46,7 @@ const App: React.FC = () => {
 
   const handleSearchButtonClick = () => {
     setQuery(searchValue);
-    navigate(`/search/${currentPage}`);
+    navigate(`/search/1`);
   };
 
   const handleItemClick = (id: string) => {
