@@ -14,6 +14,8 @@ const App: React.FC = () => {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [query, setQuery] = useState(searchValue);
+  const [totalPages, setTotalPages] = useState(1);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -24,8 +26,8 @@ const App: React.FC = () => {
   const selectedDetails = searchParams.get('details');
 
   useEffect(() => {
-    fetchResults(searchValue, currentPage);
-  }, [searchValue, currentPage]);
+    fetchResults(query, currentPage);
+  }, [query, currentPage]);
 
   const fetchResults = async (searchTerm: string, page: number) => {
     setLoading(true);
@@ -34,6 +36,7 @@ const App: React.FC = () => {
     try {
       const data = await getResults(searchTerm, page);
       setResults(data.results);
+      setTotalPages(data.totalPages);
     } catch (error) {
       setError((error as Error).message);
     } finally {
@@ -42,6 +45,7 @@ const App: React.FC = () => {
   };
 
   const handleSearchButtonClick = () => {
+    setQuery(searchValue);
     navigate(`/search/${currentPage}`);
   };
 
@@ -68,6 +72,8 @@ const App: React.FC = () => {
   const handlePageChange = (newPage: number) => {
     navigate(`/search/${newPage}`);
   };
+
+  const hasMorePages = currentPage < totalPages;
 
   return (
     <div className="app-container">
@@ -102,6 +108,7 @@ const App: React.FC = () => {
           <Pagination
             currentPage={currentPage}
             onPageChange={handlePageChange}
+            hasMorePages={hasMorePages}
           />
         )}
       </div>

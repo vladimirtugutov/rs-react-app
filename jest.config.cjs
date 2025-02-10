@@ -20,11 +20,13 @@ module.exports = {
     '.*\\.spec\\.tsx',
     'src/__tests__/setup.ts',
     'src/App.tsx',
-    'src/main.tsx',
   ],
   coverageDirectory: 'coverage',
   collectCoverageFrom: ['**/*.tsx'],
   setupFilesAfterEnv: ['<rootDir>/src/__tests__/setup.ts'],
   testMatch: ['**/__tests__/**/*.test.tsx'],
   testPathIgnorePatterns: ['<rootDir>/src/__tests__/setup.ts'],
+  moduleNameMapper: {
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy', // Мокинг CSS
+  },
 };
