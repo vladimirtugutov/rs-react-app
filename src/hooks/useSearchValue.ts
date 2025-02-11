@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
 
-const useSearchValue = () => {
-  const [searchValue, setSearchValue] = useState(
+const useSearchValue = (): {
+  searchValue: string;
+  setSearchValue: (value: string) => void;
+} => {
+  const [searchValue, setSearchValue] = useState<string>(
     localStorage.getItem('prevSearchValue') || ''
   );
 
